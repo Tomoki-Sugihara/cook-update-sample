@@ -1,8 +1,11 @@
 import React from 'react';
+import CookList from './CookList';
 
 function App() {
   return (
-    <div></div>
+    <div>
+      <CookList />
+    </div>
   );
 }
 
