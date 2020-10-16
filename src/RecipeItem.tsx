@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Ingredient from './Ingredient';
 import { changeMemo, RecipeState } from './reducers/recipes';
+import './assets/recipeItem.scss';
 
 export type Ingredient = {
    id: number;
@@ -58,7 +59,7 @@ const RecipeItem: FC<RecipeState> = props => {
                <button type="submit">変更</button>
             </form>
          </div> */}
-         <div style={{ display: 'flex' }}>
+         <div style={{ display: 'flex' }} className="container">
             {props.dairyInformation.length &&
                props.dairyInformation.map((info: Info, index) => (
                   <div key={index} className={classes.dairyInfoContainer}>
