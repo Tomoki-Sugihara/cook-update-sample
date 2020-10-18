@@ -1,5 +1,6 @@
+import { TableCell, TableRow } from '@material-ui/core';
 import React, { FC } from 'react';
-import { Ingredient as IngredientProps } from './RecipeItem';
+import { IngredientProps } from './RecipeItem';
 
 const Ingredient: FC<IngredientProps> = props => {
    let degree: string;
@@ -20,30 +21,21 @@ const Ingredient: FC<IngredientProps> = props => {
       degree = 'かなり少ない';
    }
    return (
-      <div>
-         <div style={{ display: 'flex' }}>
-            <li>{props.name}</li>
-            {props.right ? (
-               <li>
-                  {props.amount}
-                  {props.unit}
-               </li>
-            ) : (
-               <li>
-                  {props.unit}
-                  {props.amount}
-               </li>
-            )}
-
-            <li>{degree}</li>
-            {/* <Slider
-            defaultValue={0}
-            min={-100}
-            max={100}
-            step={25}
-         ></Slider> */}
-         </div>
-      </div>
+      <TableRow>
+         <TableCell>{props.name}</TableCell>
+         {props.right ? (
+            <TableCell align="right">
+               {props.amount}
+               {props.unit}
+            </TableCell>
+         ) : (
+            <TableCell align="right">
+               {props.unit}
+               {props.amount}
+            </TableCell>
+         )}
+         <TableCell align="right">{degree}</TableCell>
+      </TableRow>
    );
 };
 

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Ingredient } from '../RecipeItem';
+import { IngredientProps } from '../RecipeItem';
 export type RecipeState = {
    id: number;
    name: string;
@@ -60,6 +60,15 @@ const initialState: RecipeState[] = [
                },
                {
                   id: 2,
+                  name: 'オリーブオイル',
+                  amount: 1.5,
+                  unit: '大さじ',
+                  moderation: 1.25,
+                  default: true,
+                  right: false,
+               },
+               {
+                  id: 3,
                   name: 'オリーブオイル',
                   amount: 1.5,
                   unit: '大さじ',
