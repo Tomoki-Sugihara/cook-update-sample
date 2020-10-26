@@ -1,12 +1,16 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React, { FC } from 'react';
-import { IngredientProps } from './RecipeItem';
+import { IngredientState } from './RecipeItem';
+
+type IngredientProps = IngredientState & {
+   cooking?: boolean;
+};
 
 const Ingredient: FC<IngredientProps> = props => {
    let degree: string;
 
    if (props.moderation === 1) {
-      degree = 'good';
+      degree = 'Good';
    } else if (props.moderation < 0.5) {
       degree = 'かなり多い';
    } else if (props.moderation < 0.8) {
@@ -21,21 +25,58 @@ const Ingredient: FC<IngredientProps> = props => {
       degree = 'かなり少ない';
    }
    return (
-      <TableRow>
-         <TableCell>{props.name}</TableCell>
-         {props.right ? (
-            <TableCell align="right">
-               {props.amount}
-               {props.unit}
-            </TableCell>
+      <>
+         {props.cooking ? (
+            <TableRow>
+               <TableCell>{props.name}</TableCell>
+               {props.right ? (
+                  <TableCell align="center">
+                     <p>
+                        {props.amount}
+                        {props.unit}
+                     </p>
+                     {/* <p>{degree}</p> */}
+                  </TableCell>
+               ) : (
+                  <TableCell align="center">
+                     <p>
+                        {props.unit}
+                        {props.amount}
+                     </p>
+                     {/* <p>{degree}</p> */}
+                  </TableCell>
+               )}
+               {/* {props.cooking && <TableCell>⇛</TableCell>} */}
+               {props.right ? (
+                  <TableCell align="right">
+                     {props.amount * props.moderation}
+                     {props.unit}
+                  </TableCell>
+               ) : (
+                  <TableCell align="right">
+                     {props.unit}
+                     {props.amount * props.moderation}
+                  </TableCell>
+               )}
+            </TableRow>
          ) : (
-            <TableCell align="right">
-               {props.unit}
-               {props.amount}
-            </TableCell>
+            <TableRow>
+               <TableCell>{props.name}</TableCell>
+               {props.right ? (
+                  <TableCell align="center">
+                     {props.amount}
+                     {props.unit}
+                  </TableCell>
+               ) : (
+                  <TableCell align="center">
+                     {props.unit}
+                     {props.amount}
+                  </TableCell>
+               )}
+               <TableCell align="right">{degree}</TableCell>
+            </TableRow>
          )}
-         <TableCell align="right">{degree}</TableCell>
-      </TableRow>
+      </>
    );
 };
 

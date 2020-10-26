@@ -1,21 +1,17 @@
-import { AppBar, Typography } from '@material-ui/core';
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-
-const Header = () => {
+type Props = {
+   name: string;
+};
+const Header: FC<Props> = props => {
    return (
       <Root>
-         {/* <AppBar position="fixed"> */}
-         <h3>料理名</h3>
-         {/* </AppBar> */}
+         <h3>{props.name}</h3>
       </Root>
    );
 };
 
 const Root = styled.div`
-   position: fixed;
-   top: 0;
-   z-index: 20;
    display: flex;
    margin: 0;
    height: 50px;

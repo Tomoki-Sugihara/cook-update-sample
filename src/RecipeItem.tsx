@@ -1,5 +1,5 @@
 import {
-   makeStyles,
+   // makeStyles,
    Paper,
    Table,
    TableBody,
@@ -9,16 +9,20 @@ import {
    TableRow,
 } from '@material-ui/core';
 import React, { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import Ingredient from './Ingredient';
 import { changeMemo, RecipeState } from './reducers/recipes';
 import styled from 'styled-components';
-import './assets/recipeItem.scss';
 import Swiper, { ReactIdSwiperProps } from 'react-id-swiper';
 import 'swiper/css/swiper.css';
+import Header from './Header';
+import { Link, useNavigate } from 'react-router-dom';
+import { transitPage } from './reducers/config';
+import { useDispatch } from 'react-redux';
 
-export type IngredientProps = {
-   id: number;
+export type IngredientState = {
+   id: string;
+   // id: number;
    name: string;
    memo?: string;
    amount: number;
@@ -28,16 +32,19 @@ export type IngredientProps = {
    right: boolean; //単位が右か左か
 };
 export type Info = {
-   id: number;
+   id: string;
+   // id: number;
    memo?: string | null;
    images?: string[] | null;
    person: number; //何人分
    created_at: Date;
    updated_at: Date; //?
-   ingredients: IngredientProps[];
+   ingredients: IngredientState[];
 };
 
 const RecipeItem: FC<RecipeState> = props => {
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
    const [params] = useState<ReactIdSwiperProps>({
       pagination: {
          el: '.swiper-pagination',
@@ -52,18 +59,23 @@ const RecipeItem: FC<RecipeState> = props => {
       // loop: true,
       // spaceBetween: 30,
    });
+   const handleClickCooking = () => {
+      dispatch(transitPage(1));
+      navigate(`/cook/${props.id}`);
+   };
 
    return (
       <Root>
          <div className="recipeInfo">
-            <div>{props.name}</div>
+            <Header name={props.name} />
             <div>{props.memo}</div>
+            <div onClick={handleClickCooking}>Cooking</div>
+            {/* <Link to={`/cook/${props.id}`}>Cooking</Link> */}
             <div>
                {props.images &&
                   props.images.length > 0 &&
                   props.images.map((imgPath: string, index) => (
                      <div key={index}>
-                        {/* <div className="imageContainer" key={index}> */}
                         <img src={imgPath} alt="" />
                      </div>
                   ))}
@@ -83,20 +95,28 @@ const RecipeItem: FC<RecipeState> = props => {
                                  <TableHead>
                                     <TableRow>
                                        <TableCell>名称</TableCell>
-                                       <TableCell align="right">量</TableCell>
+                                       <TableCell align="center">
+                                          量 / 加減
+                                       </TableCell>
                                        <TableCell align="right">加減</TableCell>
                                     </TableRow>
+                                    {/* <TableRow>
+                                       <TableCell>名称</TableCell>
+                                       <TableCell align="center">量</TableCell>
+                                       <TableCell align="right">加減</TableCell>
+                                    </TableRow> */}
                                  </TableHead>
                                  <TableBody>
                                     {info.ingredients.length &&
                                        info.ingredients.map(
                                           (
-                                             ingredient: IngredientProps,
+                                             ingredient: IngredientState,
                                              index
                                           ) => (
                                              <Ingredient
                                                 {...ingredient}
                                                 key={index}
+                                                cooking={false}
                                              />
                                           )
                                        )}
@@ -125,7 +145,7 @@ const RecipeItem: FC<RecipeState> = props => {
 
 const Root = styled.div`
    .recipeInfo {
-      margin-top: 50px;
+      /* margin-top: 50px; */
    }
    .dailyInfoWrap {
       /* overflow-y: hidden; */
