@@ -63,12 +63,12 @@ const Ingredient: FC<IngredientProps> = props => {
             <TableRow>
                <TableCell>{props.name}</TableCell>
                {props.right ? (
-                  <TableCell align="center">
+                  <TableCell align="right">
                      {props.amount}
                      {props.unit}
                   </TableCell>
                ) : (
-                  <TableCell align="center">
+                  <TableCell align="right">
                      {props.unit}
                      {props.amount}
                   </TableCell>

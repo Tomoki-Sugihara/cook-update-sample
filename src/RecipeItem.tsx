@@ -63,6 +63,10 @@ const RecipeItem: FC<RecipeState> = props => {
       dispatch(transitPage(1));
       navigate(`/cook/${props.id}`);
    };
+   const handleClickReview = () => {
+      // dispatch(transitPage(1));
+      navigate(`/review/${props.id}`);
+   };
 
    return (
       <Root>
@@ -70,6 +74,7 @@ const RecipeItem: FC<RecipeState> = props => {
             <Header name={props.name} />
             <div>{props.memo}</div>
             <div onClick={handleClickCooking}>Cooking</div>
+            <div onClick={handleClickReview}>作った！</div>
             {/* <Link to={`/cook/${props.id}`}>Cooking</Link> */}
             <div>
                {props.images &&
@@ -95,9 +100,7 @@ const RecipeItem: FC<RecipeState> = props => {
                                  <TableHead>
                                     <TableRow>
                                        <TableCell>名称</TableCell>
-                                       <TableCell align="center">
-                                          量 / 加減
-                                       </TableCell>
+                                       <TableCell align="right">量</TableCell>
                                        <TableCell align="right">加減</TableCell>
                                     </TableRow>
                                     {/* <TableRow>
@@ -160,7 +163,7 @@ const Root = styled.div`
       width: 100vw;
    }
    .dailyInfoItem {
-      min-width: 86vw;
+      min-width: 96vw;
       padding: 10px 2vw;
       /* margin: 10px 2vw; */
       background-color: pink;

@@ -11,8 +11,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
+import Header from './Header';
 import { RootState } from './index';
 import Ingredient from './Ingredient';
+import { RecipeState } from './reducers/recipes';
+import { Info } from './RecipeItem';
 
 const Cook = () => {
    const { id } = useParams();
@@ -22,10 +25,13 @@ const Cook = () => {
 
    return (
       <>
-         {latestInfo === undefined ? (
+         {currentRecipe === undefined || latestInfo === undefined ? (
             <div>NoRecipe</div>
          ) : (
             <Root>
+               <Header name={currentRecipe.name} />
+               <div>{currentRecipe.memo}</div>
+               <div>{`${latestInfo.person}人分`}</div>
                <TableContainer component={Paper}>
                   <Table>
                      <TableHead>
@@ -46,7 +52,18 @@ const Cook = () => {
                      </TableBody>
                   </Table>
                </TableContainer>
-               <div>{latestInfo.memo}</div>
+               {currentRecipe.dairyInformation.map((info: Info, index) => {
+                  if (info.memo) {
+                     console.log(info.created_at.toUTCString());
+                     const date = `${info.created_at.getMonth()}月${info.created_at.getDate()}日`;
+
+                     return (
+                        <div key={index}>
+                           {info.memo}: {date}
+                        </div>
+                     );
+                  }
+               })}
                <div style={{ display: 'flex' }}>
                   {latestInfo.images &&
                      latestInfo.images.length > 0 &&
@@ -63,8 +80,6 @@ const Cook = () => {
 };
 
 const Root = styled.div`
-   margin: 8px;
-
    .imageContainer > img {
       width: 48vw;
       height: 48vw;

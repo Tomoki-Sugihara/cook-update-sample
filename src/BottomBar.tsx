@@ -21,7 +21,6 @@ const BottomBar: FC = () => {
    const config = useSelector<RootState, configState>(state => state.config);
    const bottomNavNum = getBottomNavNum(selector);
    const navigate = useNavigate();
-   console.log(bottomNavNum);
    return (
       <Root>
          <BottomNavigation

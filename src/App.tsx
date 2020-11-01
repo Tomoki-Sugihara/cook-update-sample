@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import BottomBar from './BottomBar';
 import Cook from './Cook';
 import CreateRecipe from './CreateRecipe';
+import Review from './Review';
 import CookList from './RecipeList';
 // import CreateRecipe from './CreateRecipe';
 
@@ -15,6 +16,7 @@ const App: FC = () => {
                <Route path="/" element={<CookList />} />
                <Route path="/create/" element={<CreateRecipe />} />
                <Route path="/cook/:id" element={<Cook />} />
+               <Route path="/review/:id" element={<Review />} />
             </Routes>
             <BottomBar />
          </BrowserRouter>
