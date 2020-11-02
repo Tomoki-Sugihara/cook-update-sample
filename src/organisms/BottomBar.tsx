@@ -9,10 +9,10 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBottomNavNum } from './selector';
-import { configState } from './reducers/config';
-import { RootState } from './index';
-import { transitPage } from './reducers/config';
+import { getBottomNavNum } from '../selector';
+import { configState } from '../reducers/config';
+import { RootState } from '../index';
+import { transitPage } from '../reducers/config';
 
 const BottomBar: FC = () => {
    const [value, setValue] = React.useState(0);

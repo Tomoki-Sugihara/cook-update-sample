@@ -11,11 +11,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
-import Header from './Header';
-import { RootState } from './index';
-import Ingredient from './Ingredient';
-import { RecipeState } from './reducers/recipes';
-import { Info } from './RecipeItem';
+import Header from '../../organisms/Header';
+import { RootState } from '../../index';
+import Ingredient from '../../organisms/Ingredient';
+import { RecipeState } from '../../reducers/recipes';
+import { Info } from '../list/RecipeItem';
 import { useNavigate } from 'react-router-dom';
 
 const Review = () => {

@@ -1,7 +1,7 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React, { FC } from 'react';
-import { IngredientState } from './RecipeItem';
-import ReviewTableBody from './ReviewTableBody';
+import { IngredientState } from '../pages/list/RecipeItem';
+import ReviewTableBody from '../components/ReviewTableBody';
 
 type IngredientProps = IngredientState & {
    status?: 'normal' | 'cooking' | 'reviewing';

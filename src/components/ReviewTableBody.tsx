@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { IconButton, Radio, TableCell, TableRow } from '@material-ui/core';
-import { IngredientState } from './RecipeItem';
+import { IngredientState } from '../pages/list/RecipeItem';
 import { KeyboardArrowUp, KeyboardArrowDown } from '@material-ui/icons';
 const ReviewTableBody: FC<IngredientState> = props => {
    const [open, setOpen] = useState(false);
