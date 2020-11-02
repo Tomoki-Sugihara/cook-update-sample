@@ -119,7 +119,7 @@ const RecipeItem: FC<RecipeState> = props => {
                                              <Ingredient
                                                 {...ingredient}
                                                 key={index}
-                                                cooking={false}
+                                                status='normal'
                                              />
                                           )
                                        )}
@@ -163,7 +163,7 @@ const Root = styled.div`
       width: 100vw;
    }
    .dailyInfoItem {
-      min-width: 96vw;
+      min-width: 92vw;
       padding: 10px 2vw;
       /* margin: 10px 2vw; */
       background-color: pink;

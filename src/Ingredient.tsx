@@ -1,9 +1,10 @@
-import { TableCell, TableRow } from '@material-ui/core';
-import React, { FC } from 'react';
+import { IconButton, TableCell, TableRow } from '@material-ui/core';
+import React, { FC, useState } from 'react';
 import { IngredientState } from './RecipeItem';
+import { KeyboardArrowUp, KeyboardArrowDown } from '@material-ui/icons';
 
 type IngredientProps = IngredientState & {
-   cooking?: boolean;
+   status?: 'normal' | 'cooking' | 'reviewing';
 };
 
 const Ingredient: FC<IngredientProps> = props => {
@@ -24,60 +25,101 @@ const Ingredient: FC<IngredientProps> = props => {
    } else {
       degree = 'かなり少ない';
    }
-   return (
-      <>
-         {props.cooking ? (
-            <TableRow>
-               <TableCell>{props.name}</TableCell>
-               {props.right ? (
-                  <TableCell align="center">
-                     <p>
-                        {props.amount}
-                        {props.unit}
-                     </p>
-                     {/* <p>{degree}</p> */}
-                  </TableCell>
-               ) : (
-                  <TableCell align="center">
-                     <p>
-                        {props.unit}
-                        {props.amount}
-                     </p>
-                     {/* <p>{degree}</p> */}
-                  </TableCell>
-               )}
-               {/* {props.cooking && <TableCell>⇛</TableCell>} */}
-               {props.right ? (
-                  <TableCell align="right">
-                     {props.amount * props.moderation}
-                     {props.unit}
-                  </TableCell>
-               ) : (
-                  <TableCell align="right">
-                     {props.unit}
-                     {props.amount * props.moderation}
-                  </TableCell>
-               )}
-            </TableRow>
-         ) : (
-            <TableRow>
-               <TableCell>{props.name}</TableCell>
-               {props.right ? (
-                  <TableCell align="right">
-                     {props.amount}
-                     {props.unit}
-                  </TableCell>
-               ) : (
-                  <TableCell align="right">
-                     {props.unit}
-                     {props.amount}
-                  </TableCell>
-               )}
-               <TableCell align="right">{degree}</TableCell>
-            </TableRow>
-         )}
-      </>
-   );
-};
 
+   if (props.status === 'normal') {
+      return (
+         <TableRow>
+            <TableCell>{props.name}</TableCell>
+            {props.right ? (
+               <TableCell align="right">
+                  {props.amount}
+                  {props.unit}
+               </TableCell>
+            ) : (
+               <TableCell align="right">
+                  {props.unit}
+                  {props.amount}
+               </TableCell>
+            )}
+            <TableCell align="right">{degree}</TableCell>
+         </TableRow>
+      );
+   } else if (props.status === 'cooking') {
+      return (
+         <TableRow>
+            <TableCell>{props.name}</TableCell>
+            {props.right ? (
+               <TableCell align="center">
+                  <p>
+                     {props.amount}
+                     {props.unit}
+                  </p>
+               </TableCell>
+            ) : (
+               <TableCell align="center">
+                  <p>
+                     {props.unit}
+                     {props.amount}
+                  </p>
+               </TableCell>
+            )}
+            {props.right ? (
+               <TableCell align="right">
+                  {props.amount * props.moderation}
+                  {props.unit}
+               </TableCell>
+            ) : (
+               <TableCell align="right">
+                  {props.unit}
+                  {props.amount * props.moderation}
+               </TableCell>
+            )}
+         </TableRow>
+      );
+   } else if (props.status === 'reviewing') {
+      const [open, setOpen] = useState(false);
+      return (
+         <TableRow>
+            <TableCell>
+               <IconButton
+                  aria-label="expand row"
+                  size="small"
+                  onClick={() => setOpen(!open)}
+               >
+                  {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+               </IconButton>
+            </TableCell>
+            <TableCell>{props.name}</TableCell>
+            {props.right ? (
+               <TableCell align="center">
+                  <p>
+                     {props.amount}
+                     {props.unit}
+                  </p>
+               </TableCell>
+            ) : (
+               <TableCell align="center">
+                  <p>
+                     {props.unit}
+                     {props.amount}
+                  </p>
+               </TableCell>
+            )}
+            {props.right ? (
+               <TableCell align="right">
+                  {props.amount * props.moderation}
+                  {props.unit}
+               </TableCell>
+            ) : (
+               <TableCell align="right">
+                  {props.unit}
+                  {props.amount * props.moderation}
+               </TableCell>
+            )}
+         </TableRow>
+      );
+   } else {
+      return <div>error</div>;
+   }
+};
 export default Ingredient;
