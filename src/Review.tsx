@@ -25,7 +25,6 @@ const Review = () => {
    const currentRecipe = recipes.find(recipe => recipe.id === id);
    const latestInfo = currentRecipe && currentRecipe.dairyInformation[0];
 
-
    if (currentRecipe === undefined) {
       return <div>このレシピは存在しません</div>;
    } else if (latestInfo === undefined) {
@@ -40,7 +39,8 @@ const Review = () => {
                <Table>
                   <TableHead>
                      <TableRow>
-                        <TableCell></TableCell>
+                        <TableCell padding="none" />
+                        {/* <TableCell padding="none" /> */}
                         <TableCell>名称</TableCell>
                         <TableCell align="center">今回</TableCell>
                         <TableCell align="right">次回</TableCell>
