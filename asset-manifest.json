@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/cook-update-sample/static/js/main.60fc236b.chunk.js",
+    "main.js.map": "/cook-update-sample/static/js/main.60fc236b.chunk.js.map",
+    "runtime-main.js": "/cook-update-sample/static/js/runtime-main.10c5872b.js",
+    "runtime-main.js.map": "/cook-update-sample/static/js/runtime-main.10c5872b.js.map",
+    "static/css/2.67246356.chunk.css": "/cook-update-sample/static/css/2.67246356.chunk.css",
+    "static/js/2.b6325854.chunk.js": "/cook-update-sample/static/js/2.b6325854.chunk.js",
+    "static/js/2.b6325854.chunk.js.map": "/cook-update-sample/static/js/2.b6325854.chunk.js.map",
+    "index.html": "/cook-update-sample/index.html",
+    "precache-manifest.1333d3b88440756b25e2eb87d6641272.js": "/cook-update-sample/precache-manifest.1333d3b88440756b25e2eb87d6641272.js",
+    "service-worker.js": "/cook-update-sample/service-worker.js",
+    "static/css/2.67246356.chunk.css.map": "/cook-update-sample/static/css/2.67246356.chunk.css.map",
+    "static/js/2.b6325854.chunk.js.LICENSE.txt": "/cook-update-sample/static/js/2.b6325854.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.10c5872b.js",
+    "static/css/2.67246356.chunk.css",
+    "static/js/2.b6325854.chunk.js",
+    "static/js/main.60fc236b.chunk.js"
+  ]
+}
