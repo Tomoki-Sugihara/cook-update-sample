@@ -1,13 +1,87 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#000000" />
+      <link rel="stylesheet" href="./index.css" />
+      <title>Cook Update Sample</title>
+      <style>
+      li {
+         list-style: none;
+      }
+      /* body {
+         background-color: rgb(40, 40, 40);
+         color: rgb(228, 226, 226);
+      } */
+      
+      /* A Modern CSS Reset */
+      *,
+      *::before,
+      *::after {
+         box-sizing: border-box;
+      }
+      ul[class],
+      ol[class] {
+         padding: 0;
+      }
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      ul[class],
+      ol[class],
+      figure,
+      blockquote,
+      dl,
+      dd {
+         margin: 0;
+      }
+      html {
+         scroll-behavior: smooth;
+      }
+      body {
+         min-height: 100vh;
+         text-rendering: optimizeSpeed;
+         line-height: 1.5;
+      }
+      ul[class],
+      ol[class] {
+         list-style: none;
+      }
+      a:not([class]) {
+         text-decoration-skip-ink: auto;
+      }
+      img {
+         max-width: 100%;
+         display: block;
+      }
+      article > * + * {
+         margin-top: 1em;
+      }
+      input,
+      button,
+      textarea,
+      select {
+         font: inherit;
+      }
+      img:not([alt]) {
+         filter: blur(10px);
+      }
+      @media (prefers-reduced-motion: reduce) {
+         * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+         }
+      }
+      </style>
+   </head>
+   <body>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div id="root"></div>
+   </body>
 </html>
