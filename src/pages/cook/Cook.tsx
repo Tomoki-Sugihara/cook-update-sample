@@ -14,7 +14,6 @@ import styled from 'styled-components';
 import Header from '../../organisms/Header';
 import { RootState } from '../../index';
 import Ingredient from '../../organisms/Ingredient';
-import { RecipeState } from '../../reducers/recipes';
 import { Info } from '../list/RecipeItem';
 import { useNavigate } from 'react-router-dom';
 

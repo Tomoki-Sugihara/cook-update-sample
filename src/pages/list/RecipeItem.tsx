@@ -11,12 +11,12 @@ import {
 import React, { FC, useState } from 'react';
 // import { useDispatch } from 'react-redux';
 import Ingredient from '../../organisms/Ingredient';
-import { changeMemo, RecipeState } from '../../reducers/recipes';
+import {  RecipeState } from '../../reducers/recipes';
 import styled from 'styled-components';
 import Swiper, { ReactIdSwiperProps } from 'react-id-swiper';
 import 'swiper/css/swiper.css';
 import Header from '../../organisms/Header';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { transitPage } from '../../reducers/config';
 import { useDispatch } from 'react-redux';
 

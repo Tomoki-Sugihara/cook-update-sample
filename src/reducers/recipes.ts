@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 // import { IngredientState } from '../RecipeItem';
 export type RecipeState = {
    id: string;
@@ -21,6 +20,7 @@ export type RecipeState = {
          name: string;
          memo?: string;
          amount: number;
+         nextAmount: number | null;
          unit: string;
          moderation: number; //加減
          default: boolean; //加減を変更したかどうか
@@ -56,6 +56,7 @@ const initialState: RecipeState[] = [
                   amount: 5,
                   unit: 'mg',
                   moderation: 1,
+                  nextAmount: null,
                   default: false,
                   right: true,
                },
@@ -65,6 +66,7 @@ const initialState: RecipeState[] = [
                   amount: 1.5,
                   unit: '大さじ',
                   moderation: 1.25,
+                  nextAmount: null,
                   default: true,
                   right: false,
                },
@@ -74,6 +76,7 @@ const initialState: RecipeState[] = [
                   amount: 1.5,
                   unit: '大さじ',
                   moderation: 1.25,
+                  nextAmount: null,
                   default: true,
                   right: false,
                },
@@ -94,6 +97,7 @@ const initialState: RecipeState[] = [
                   id: '70d528c0-0f45-4af8-93a8-2c6a2bfb0ffa',
                   name: '塩',
                   amount: 5,
+                  nextAmount: null,
                   unit: 'mg',
                   moderation: 1,
                   default: false,
@@ -104,6 +108,7 @@ const initialState: RecipeState[] = [
                   name: 'オリーブオイル',
                   memo: 'いい感じ',
                   amount: 1.3,
+                  nextAmount: null,
                   unit: '大さじ',
                   moderation: 1,
                   default: false,
@@ -131,6 +136,7 @@ const initialState: RecipeState[] = [
                   id: '441f8116-4eee-49d2-9201-67b5ec81baed',
                   name: 'みりん',
                   amount: 5,
+                  nextAmount: null,
                   unit: 'mg',
                   moderation: 1,
                   default: false,
@@ -140,6 +146,7 @@ const initialState: RecipeState[] = [
                   id: 'f80f79ab-1911-49bc-bd46-8d0fde4e99f5',
                   name: '醤油',
                   amount: 1.5,
+                  nextAmount: null,
                   unit: '大さじ',
                   moderation: 1.25,
                   default: true,
@@ -158,6 +165,7 @@ const initialState: RecipeState[] = [
                   id: 'f1c9ae7f-b3ee-443e-87a0-bddc6e1b182b',
                   name: 'みりん',
                   amount: 5,
+                  nextAmount: null,
                   unit: '小さじ',
                   moderation: 1,
                   default: true,
@@ -167,6 +175,7 @@ const initialState: RecipeState[] = [
                   id: '9d2cf0d3-29f2-4c91-b87f-226b5c9fe582',
                   name: '醤油',
                   amount: 1.5,
+                  nextAmount: null,
                   unit: '大さじ',
                   moderation: 0.75,
                   default: false,

@@ -10,15 +10,12 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBottomNavNum } from '../selector';
-import { configState } from '../reducers/config';
 import { RootState } from '../index';
 import { transitPage } from '../reducers/config';
 
 const BottomBar: FC = () => {
-   const [value, setValue] = React.useState(0);
    const dispatch = useDispatch();
    const selector = useSelector<RootState, RootState>(state => state);
-   const config = useSelector<RootState, configState>(state => state.config);
    const bottomNavNum = getBottomNavNum(selector);
    const navigate = useNavigate();
    return (

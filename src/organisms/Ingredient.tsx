@@ -2,30 +2,14 @@ import { TableCell, TableRow } from '@material-ui/core';
 import React, { FC } from 'react';
 import { IngredientState } from '../pages/list/RecipeItem';
 import ReviewTableBody from '../components/ReviewTableBody';
+import { getModerationString } from '../utils/helper';
 
 type IngredientProps = IngredientState & {
    status?: 'normal' | 'cooking' | 'reviewing';
 };
 
 const Ingredient: FC<IngredientProps> = props => {
-   let degree: string;
-
-   if (props.moderation === 1) {
-      degree = 'Good';
-   } else if (props.moderation < 0.5) {
-      degree = 'かなり多い';
-   } else if (props.moderation < 0.8) {
-      degree = '多い';
-   } else if (props.moderation < 1) {
-      degree = '少し多い';
-   } else if (props.moderation <= 1.2) {
-      degree = '少し少ない';
-   } else if (props.moderation <= 1.5) {
-      degree = '少ない';
-   } else {
-      degree = 'かなり少ない';
-   }
-
+   const degree = getModerationString(props.moderation);
    if (props.status === 'normal') {
       return (
          <TableRow>
@@ -76,8 +60,8 @@ const Ingredient: FC<IngredientProps> = props => {
             )}
          </TableRow>
       );
-   } else if (props.status === 'reviewing') {
-      return (<ReviewTableBody {...props} />)
+      // } else if (props.status === 'reviewing') {
+      //    return (<ReviewTableBody {...props} />)
    } else {
       return <div>error</div>;
    }

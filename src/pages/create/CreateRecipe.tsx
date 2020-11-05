@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { createRecipe } from './reducers/recipes';
 
 const CreateRecipe = () => {
-   const dispatch = useDispatch();
+   // const dispatch = useDispatch();
    const { register, handleSubmit, errors } = useForm<Inputs>({
       mode: 'onBlur',
    });
