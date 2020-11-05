@@ -11,7 +11,7 @@ import {
 import React, { FC, useState } from 'react';
 // import { useDispatch } from 'react-redux';
 import Ingredient from '../../organisms/Ingredient';
-import {  RecipeState } from '../../reducers/recipes';
+import { RecipeState } from '../../reducers/recipes';
 import styled from 'styled-components';
 import Swiper, { ReactIdSwiperProps } from 'react-id-swiper';
 import 'swiper/css/swiper.css';
@@ -119,7 +119,7 @@ const RecipeItem: FC<RecipeState> = props => {
                                              <Ingredient
                                                 {...ingredient}
                                                 key={index}
-                                                status='normal'
+                                                status="normal"
                                              />
                                           )
                                        )}
@@ -166,7 +166,7 @@ const Root = styled.div`
       min-width: 92vw;
       padding: 10px 2vw;
       /* margin: 10px 2vw; */
-      background-color: pink;
+      /* background-color: pink; */
 
       :first-child {
          /* margin-left: 2vw; */
