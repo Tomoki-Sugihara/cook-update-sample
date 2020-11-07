@@ -46,9 +46,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gh-deploy": "yarn build && gh-pages -d build"
+    "gh-deploy": "yarn build && gh-pages -d build",
+    "fb-deploy": "yarn build && firebase deploy"
   },
-  "homepage": "https://sugihara10969.github.io/cook-update-sample/",
   "eslintConfig": {
     "extends": "react-app"
   },
