@@ -48,7 +48,6 @@
     "eject": "react-scripts eject",
     "gh-deploy": "yarn build && gh-pages -d build"
   },
-  "homepage": "https://sugihara10969.github.io/cook-update-sample/",
   "eslintConfig": {
     "extends": "react-app"
   },
