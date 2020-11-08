@@ -25,7 +25,6 @@ export type recipesSample = {
    }>;
 };
 
-
 export type RecipeState = {
    id: string;
    name: string;
@@ -53,3 +52,4 @@ export type RecipeState = {
          right: boolean; //単位が右か左か
       }>;
    }>;
+};

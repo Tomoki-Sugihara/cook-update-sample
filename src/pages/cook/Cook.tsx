@@ -16,13 +16,21 @@ import { RootState } from '../../index';
 import Ingredient from '../../organisms/Ingredient';
 import { Info } from '../list/RecipeItem';
 import { useNavigate } from 'react-router-dom';
+import { RecipeState } from '../../reducers/recipes';
+import { getLatestRecipeInfo } from '../../selector';
 
 const Cook = () => {
    const { id } = useParams();
    const navigate = useNavigate();
-   const recipes = useSelector((state: RootState) => state.recipes);
-   const currentRecipe = recipes.find(recipe => recipe.id === id);
-   const latestInfo = currentRecipe && currentRecipe.recipeInfo[0];
+   const selector = useSelector<RootState, RootState>(state => state);
+   const recipes: RecipeState[] = useSelector(
+      (state: RootState) => state.recipes
+   );
+   const currentRecipe: RecipeState = recipes.find(
+      recipe => recipe.id === id
+   ) as RecipeState;
+   // const latestInfo = currentRecipe.recipeInfo[0];
+   const latestInfo = getLatestRecipeInfo(selector);
 
    if (currentRecipe === undefined) {
       return <div>このレシピは存在しません</div>;

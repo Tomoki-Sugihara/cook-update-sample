@@ -22,13 +22,9 @@ import { useDispatch } from 'react-redux';
 
 export type IngredientState = {
    id: string;
-   // id: number;
    name: string;
    memo?: string;
-   amount: number;
    unit: string;
-   moderation: number; //加減
-   default: boolean; //加減を変更したかどうか
    right: boolean; //単位が右か左か
 };
 export type Info = {
@@ -89,7 +85,7 @@ const RecipeItem: FC<RecipeState> = props => {
          <div className="dailyInfoWrap">
             <div className="dailyInfoList">
                <Swiper {...params}>
-                  {props.recipeInfo.length === 0 ? (
+                  {props.recipeInfoId.length === 0 ? (
                      <div>image</div>
                   ) : (
                      props.recipeInfo.map((info: Info, index) => (
