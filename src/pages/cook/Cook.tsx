@@ -12,25 +12,23 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 import Header from '../../organisms/Header';
-import { RootState } from '../../index';
+// import { RootState } from '../../index';
 import Ingredient from '../../organisms/Ingredient';
-import { Info } from '../list/RecipeItem';
 import { useNavigate } from 'react-router-dom';
 import { RecipeState } from '../../reducers/recipes';
 import { getLatestRecipeInfo } from '../../selector';
+import { RecipeInfoType } from '../../types/recipesType';
 
 const Cook = () => {
    const { id } = useParams();
    const navigate = useNavigate();
-   const selector = useSelector<RootState, RootState>(state => state);
-   const recipes: RecipeState[] = useSelector(
-      (state: RootState) => state.recipes
-   );
-   const currentRecipe: RecipeState = recipes.find(
+   const selector = useSelector(state => state);
+   const recipes: RecipeState[] = useSelector(state => state.recipes);
+   const currentRecipe = recipes.find(
       recipe => recipe.id === id
    ) as RecipeState;
-   // const latestInfo = currentRecipe.recipeInfo[0];
-   const latestInfo = getLatestRecipeInfo(selector);
+   const latestInfo = currentRecipe.recipeInfo[0];
+   // const latestInfo = getLatestRecipeInfo(selector);
 
    if (currentRecipe === undefined) {
       return <div>このレシピは存在しません</div>;
@@ -57,7 +55,7 @@ const Cook = () => {
                      </TableRow>
                   </TableHead>
                   <TableBody>
-                     {latestInfo.ingredients.map(ingredient => (
+                     {latestInfo.ingredientData.map(ingredient => (
                         <Ingredient
                            {...ingredient}
                            key={ingredient.id}
@@ -67,7 +65,7 @@ const Cook = () => {
                   </TableBody>
                </Table>
             </TableContainer>
-            {currentRecipe.recipeInfo.map((info: Info, index) => {
+            {currentRecipe.recipeInfo.map((info, index) => {
                if (info.memo) {
                   const date = `${
                      info.created_at.getMonth() + 1

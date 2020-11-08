@@ -1,28 +1,34 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React, { FC } from 'react';
-import { IngredientState } from '../pages/list/RecipeItem';
-import ReviewTableBody from '../components/ReviewTableBody';
 import { getModerationString } from '../utils/helper';
+import { IngredientDataType } from '../types/recipesType';
+import { IngredientType } from '../types/ingredientsType';
+import { getIngredientInfo } from '../selector';
 
-type IngredientProps = IngredientState & {
+type IngredientProps = IngredientDataType & {
    status?: 'normal' | 'cooking' | 'reviewing';
 };
 
 const Ingredient: FC<IngredientProps> = props => {
-   const degree = getModerationString(props.moderation);
+   const ingredientInfo = getIngredientInfo(props.ingredientId);
+   const ingredient = {
+      ...ingredientInfo,
+      ...props
+   } as unknown as IngredientType
+   const degree = getModerationString(ingredient.moderation);
    if (props.status === 'normal') {
       return (
          <TableRow>
-            <TableCell>{props.name}</TableCell>
-            {props.right ? (
+            <TableCell>{ingredient.name}</TableCell>
+            {ingredient.right ? (
                <TableCell align="right">
-                  {props.amount}
-                  {props.unit}
+                  {ingredient.amount}
+                  {ingredient.unit}
                </TableCell>
             ) : (
                <TableCell align="right">
-                  {props.unit}
-                  {props.amount}
+                  {ingredient.unit}
+                  {ingredient.amount}
                </TableCell>
             )}
             <TableCell align="right">{degree}</TableCell>
@@ -31,37 +37,37 @@ const Ingredient: FC<IngredientProps> = props => {
    } else if (props.status === 'cooking') {
       return (
          <TableRow>
-            <TableCell>{props.name}</TableCell>
-            {props.right ? (
+            <TableCell>{ingredient.name}</TableCell>
+            {ingredient.right ? (
                <TableCell align="center">
                   <p>
-                     {props.amount}
-                     {props.unit}
+                     {ingredient.amount}
+                     {ingredient.unit}
                   </p>
                </TableCell>
             ) : (
                <TableCell align="center">
                   <p>
-                     {props.unit}
-                     {props.amount}
+                     {ingredient.unit}
+                     {ingredient.amount}
                   </p>
                </TableCell>
             )}
-            {props.right ? (
+            {ingredient.right ? (
                <TableCell align="right">
-                  {props.amount * props.moderation}
-                  {props.unit}
+                  {ingredient.amount * ingredient.moderation}
+                  {ingredient.unit}
                </TableCell>
             ) : (
                <TableCell align="right">
-                  {props.unit}
-                  {props.amount * props.moderation}
+                  {ingredient.unit}
+                  {ingredient.amount * ingredient.moderation}
                </TableCell>
             )}
          </TableRow>
       );
-      // } else if (props.status === 'reviewing') {
-      //    return (<ReviewTableBody {...props} />)
+      // } else if (ingredient.status === 'reviewing') {
+      //    return (<ReviewTableBody {...ingredient} />)
    } else {
       return <div>error</div>;
    }

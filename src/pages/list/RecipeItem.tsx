@@ -20,25 +20,10 @@ import { useNavigate } from 'react-router-dom';
 import { transitPage } from '../../reducers/config';
 import { useDispatch } from 'react-redux';
 
-export type IngredientState = {
-   id: string;
-   name: string;
-   memo?: string;
-   unit: string;
-   right: boolean; //単位が右か左か
-};
-export type Info = {
-   id: string;
-   // id: number;
-   memo?: string | null;
-   images?: string[] | null;
-   person: number; //何人分
-   created_at: Date;
-   updated_at: Date; //?
-   ingredients: IngredientState[];
-};
 
-const RecipeItem: FC<RecipeState> = props => {
+type RecipeItemProps = RecipeState
+
+const RecipeItem: FC<RecipeItemProps> = props => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const [params] = useState<ReactIdSwiperProps>({
@@ -85,10 +70,10 @@ const RecipeItem: FC<RecipeState> = props => {
          <div className="dailyInfoWrap">
             <div className="dailyInfoList">
                <Swiper {...params}>
-                  {props.recipeInfoId.length === 0 ? (
+                  {props.recipeInfo.length === 0 ? (
                      <div>image</div>
                   ) : (
-                     props.recipeInfo.map((info: Info, index) => (
+                     props.recipeInfo.map((info, index) => (
                         <div key={index} className="dailyInfoItem">
                            <div>{info.person}人分</div>
                            <TableContainer component={Paper}>
@@ -106,10 +91,10 @@ const RecipeItem: FC<RecipeState> = props => {
                                     </TableRow> */}
                                  </TableHead>
                                  <TableBody>
-                                    {info.ingredients.length &&
-                                       info.ingredients.map(
+                                    {info.ingredientData.length &&
+                                       info.ingredientData.map(
                                           (
-                                             ingredient: IngredientState,
+                                             ingredient,
                                              index
                                           ) => (
                                              <Ingredient

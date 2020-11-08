@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IngredientInfoType } from '../types/ingredientsType';
 
-export type ingredientState = {
-   id: string;
-   name: string;
-   memo?: string;
-   unit: string;
-   right: boolean; //単位が右か左か
-};
-
-const initialState: ingredientState[] = [
+const initialState: IngredientInfoType[] = [
    {
       id: '9a8f2571-726e-4380-8511-137daf9072fc',
       name: '塩',

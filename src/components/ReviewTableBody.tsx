@@ -8,19 +8,25 @@ import {
    TableCell,
    TableRow,
 } from '@material-ui/core';
-import { IngredientState } from '../pages/list/RecipeItem';
 import { KeyboardArrowUp, KeyboardArrowDown } from '@material-ui/icons';
 import { getModerationString } from '../utils/helper';
 import styled from 'styled-components';
+import { getIngredientInfo } from '../selector';
+import { IngredientDataType } from '../types/recipesType';
+import { IngredientType } from '../types/ingredientsType';
 
-type ReviewTableBodyProps = IngredientState & {
+type ReviewTableBodyProps = IngredientDataType & {
    index: number;
    openNum: number | null;
-   // setOpenNum: (number: number) => void;
    inputOpenNum: (number: number | null) => void;
 };
 
 const ReviewTableBody: FC<ReviewTableBodyProps> = props => {
+   const ingredientInfo = getIngredientInfo(props.ingredientId);
+   const ingredient = {
+      ...ingredientInfo,
+      ...props
+   } as unknown as IngredientType
    const open = props.index === props.openNum;
    const [value, setValue] = useState(1);
 
@@ -48,31 +54,31 @@ const ReviewTableBody: FC<ReviewTableBodyProps> = props => {
                   {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                </IconButton>
             </TableCell>
-            <TableCell onClick={handleClickOpenButton}>{props.name}</TableCell>
-            {props.right ? (
+            <TableCell onClick={handleClickOpenButton}>{ingredient.name}</TableCell>
+            {ingredient.right ? (
                <TableCell align="right">
                   <p>
-                     {props.amount}
-                     {props.unit}
+                     {ingredient.amount}
+                     {ingredient.unit}
                   </p>
                </TableCell>
             ) : (
                <TableCell align="right">
                   <p>
-                     {props.unit}
-                     {props.amount}
+                     {ingredient.unit}
+                     {ingredient.amount}
                   </p>
                </TableCell>
             )}
-            {props.right ? (
+            {ingredient.right ? (
                <TableCell align="right">
-                  {props.amount * props.moderation}
-                  {props.unit}
+                  {ingredient.amount * ingredient.moderation}
+                  {ingredient.unit}
                </TableCell>
             ) : (
                <TableCell align="right">
-                  {props.unit}
-                  {props.amount * props.moderation}
+                  {ingredient.unit}
+                  {ingredient.amount * ingredient.moderation}
                </TableCell>
             )}
          </TableRow>
@@ -106,7 +112,7 @@ const ReviewTableBody: FC<ReviewTableBodyProps> = props => {
                            <div>{getModerationString(value)}</div>
                            <div className="spaceBetweenBox">
                               <div>次回</div>
-                              <div>{props.amount * value}</div>
+                              <div>{ingredient.amount * value}</div>
                            </div>
                         </div> */}
                      </CollapseWrapper>
