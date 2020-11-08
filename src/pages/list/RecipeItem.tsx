@@ -89,10 +89,10 @@ const RecipeItem: FC<RecipeState> = props => {
          <div className="dailyInfoWrap">
             <div className="dailyInfoList">
                <Swiper {...params}>
-                  {props.dairyInformation.length === 0 ? (
+                  {props.recipeInfo.length === 0 ? (
                      <div>image</div>
                   ) : (
-                     props.dairyInformation.map((info: Info, index) => (
+                     props.recipeInfo.map((info: Info, index) => (
                         <div key={index} className="dailyInfoItem">
                            <div>{info.person}人分</div>
                            <TableContainer component={Paper}>

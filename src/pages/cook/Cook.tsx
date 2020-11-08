@@ -22,7 +22,7 @@ const Cook = () => {
    const navigate = useNavigate();
    const recipes = useSelector((state: RootState) => state.recipes);
    const currentRecipe = recipes.find(recipe => recipe.id === id);
-   const latestInfo = currentRecipe && currentRecipe.dairyInformation[0];
+   const latestInfo = currentRecipe && currentRecipe.recipeInfo[0];
 
    if (currentRecipe === undefined) {
       return <div>このレシピは存在しません</div>;
@@ -53,13 +53,13 @@ const Cook = () => {
                         <Ingredient
                            {...ingredient}
                            key={ingredient.id}
-                           status='cooking'
+                           status="cooking"
                         />
                      ))}
                   </TableBody>
                </Table>
             </TableContainer>
-            {currentRecipe.dairyInformation.map((info: Info, index) => {
+            {currentRecipe.recipeInfo.map((info: Info, index) => {
                if (info.memo) {
                   const date = `${
                      info.created_at.getMonth() + 1

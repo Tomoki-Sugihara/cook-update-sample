@@ -4,10 +4,17 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { recipesSlice, configSlice } from './reducers/';
+import {
+   recipesSlice,
+   configSlice,
+   recipeInfoSlice,
+   ingredientsSlice,
+} from './reducers/';
 
 const rootReducer = combineReducers({
    recipes: recipesSlice,
+   recipeInfo: recipeInfoSlice,
+   ingredients: ingredientsSlice,
    config: configSlice,
 });
 export type RootState = ReturnType<typeof rootReducer>;

@@ -20,7 +20,7 @@ const Review = () => {
    const { id } = useParams();
    const recipes = useSelector((state: RootState) => state.recipes);
    const currentRecipe = recipes.find(recipe => recipe.id === id);
-   const latestInfo = currentRecipe && currentRecipe.dairyInformation[0];
+   const latestInfo = currentRecipe && currentRecipe.recipeInfo[0];
 
    const [openNum, setOpenNum] = useState<number | null>(0);
    const inputOpenNum = useCallback(
