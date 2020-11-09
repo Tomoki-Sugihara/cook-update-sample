@@ -16,8 +16,6 @@ import Header from '../../organisms/Header';
 import Ingredient from '../../organisms/Ingredient';
 import { useNavigate } from 'react-router-dom';
 import { RecipeState } from '../../reducers/recipes';
-import { getLatestRecipeInfo } from '../../selector';
-import { RecipeInfoType } from '../../types/recipesType';
 
 const Cook = () => {
    const { id } = useParams();
@@ -55,10 +53,10 @@ const Cook = () => {
                      </TableRow>
                   </TableHead>
                   <TableBody>
-                     {latestInfo.ingredientData.map(ingredient => (
+                     {latestInfo.ingredientData.map((ingredient, index) => (
                         <Ingredient
                            {...ingredient}
-                           key={ingredient.id}
+                           key={index}
                            status="cooking"
                         />
                      ))}

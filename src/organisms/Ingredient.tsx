@@ -4,17 +4,20 @@ import { getModerationString } from '../utils/helper';
 import { IngredientDataType } from '../types/recipesType';
 import { IngredientType } from '../types/ingredientsType';
 import { getIngredientInfo } from '../selector';
+import { useSelector } from 'react-redux';
 
 type IngredientProps = IngredientDataType & {
    status?: 'normal' | 'cooking' | 'reviewing';
 };
 
 const Ingredient: FC<IngredientProps> = props => {
-   const ingredientInfo = getIngredientInfo(props.ingredientId);
-   const ingredient = {
+   const selector = useSelector(state => state);
+   const ingredientInfo = getIngredientInfo(selector, props.ingredientId);
+   const ingredient = ({
       ...ingredientInfo,
-      ...props
-   } as unknown as IngredientType
+      ...props,
+   } as unknown) as IngredientType;
+
    const degree = getModerationString(ingredient.moderation);
    if (props.status === 'normal') {
       return (

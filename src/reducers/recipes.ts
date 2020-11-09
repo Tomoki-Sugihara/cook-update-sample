@@ -50,8 +50,16 @@ const initialState: RecipeState[] = [
                {
                   id: '9a8f2571-726e-4380-8511-137daf9072fb',
                   ingredientId: '9a8f2571-726e-4380-8511-137daf9072fc',
+                  moderation: 1.2,
+                  amount: 2,
+                  nextAmount: null,
+                  default: false,
+               },
+               {
+                  id: '9a8f2571-726e-4380-8511-137daf9072fb',
+                  ingredientId: 'fb339be0-e709-4b96-8055-61cb0d359849',
                   moderation: 1,
-                  amount: 5,
+                  amount: 2.5,
                   nextAmount: null,
                   default: false,
                },
@@ -69,27 +77,18 @@ const initialState: RecipeState[] = [
             person: 1,
             ingredientData: [
                {
-                  id: '9a8f2571-726e-4380-8511-137daf9072fc',
-                  ingredientId: '9a8f2571-726e-4380-8511-138daf9072fc',
-                  moderation: 1,
+                  id: '9a8f2571-726e-4380-8515-137daf9072fc',
+                  ingredientId: '9a8f2571-726e-4380-8511-137daf9072fc',
+                  moderation: 0.8,
                   amount: 5,
                   nextAmount: null,
                   default: false,
                },
-            ],
-         },
-         {
-            id: '06c61785-2df4-4e8f-b76f-de8bd2dab824',
-            memo: '少し辛い',
-            created_at: new Date('2020-11-08T09:13:13.500Z'),
-            updated_at: new Date('2020-11-08T09:13:13.500Z'),
-            person: 1,
-            ingredientData: [
                {
-                  id: '9a8f2571-726e-4380-8511-137daf9072fc',
-                  ingredientId: '9a8f2572-726e-4380-8511-137daf9072fc',
+                  id: '9a8f2571-726e-4380-8515-137daf9072fc',
+                  ingredientId: 'fb339be0-e709-4b96-8055-61cb0d359849',
                   moderation: 1,
-                  amount: 5,
+                  amount: 3,
                   nextAmount: null,
                   default: false,
                },
@@ -109,11 +108,11 @@ const initialState: RecipeState[] = [
             memo: '少し辛い',
             created_at: new Date('2020-11-08T09:13:13.500Z'),
             updated_at: new Date('2020-11-08T09:13:13.500Z'),
-            person: 1,
+            person: 2,
             ingredientData: [
                {
-                  id: '9a8f2571-726e-4380-8511-137daf9072fc',
-                  ingredientId: '9a8f2572-726e-4380-8511-137daf9072fc',
+                  id: '9a8f2571-786e-4380-8511-137daf9072fc',
+                  ingredientId: '441f8116-4eee-49d2-9201-67b5ec81baed',
                   moderation: 1,
                   amount: 5,
                   nextAmount: null,
@@ -130,7 +129,7 @@ const initialState: RecipeState[] = [
             ingredientData: [
                {
                   id: 'fb339be0-e709-4b96-8055-61cb0d359849',
-                  ingredientId: 'fb349be0-e709-4b96-8055-61cb0d359849',
+                  ingredientId: '441f8116-4eee-49d2-9201-67b5ec81baed',
                   amount: 1.5,
                   moderation: 1.25,
                   nextAmount: null,

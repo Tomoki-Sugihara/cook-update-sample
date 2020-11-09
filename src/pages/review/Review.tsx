@@ -20,8 +20,10 @@ import { getLatestRecipeInfo } from '../../selector';
 const Review = () => {
    const { id } = useParams();
    const recipes = useSelector(state => state.recipes);
-   const currentRecipe = recipes.find(recipe => recipe.id === id) as RecipeState;
-   const selector = useSelector(state => state)
+   const currentRecipe = recipes.find(
+      recipe => recipe.id === id
+   ) as RecipeState;
+   const selector = useSelector(state => state);
    const latestInfo = getLatestRecipeInfo(selector);
 
    const [openNum, setOpenNum] = useState<number | null>(0);
@@ -57,7 +59,7 @@ const Review = () => {
                      {latestInfo.ingredientData.map((ingredient, index) => (
                         <ReviewTableBody
                            {...ingredient}
-                           key={ingredient.id}
+                           key={index}
                            index={index}
                            openNum={openNum}
                            // setOpenNum={setOpenNum}

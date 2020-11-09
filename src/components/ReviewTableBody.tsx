@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import { getIngredientInfo } from '../selector';
 import { IngredientDataType } from '../types/recipesType';
 import { IngredientType } from '../types/ingredientsType';
+import { useSelector } from 'react-redux';
 
 type ReviewTableBodyProps = IngredientDataType & {
    index: number;
@@ -22,11 +23,12 @@ type ReviewTableBodyProps = IngredientDataType & {
 };
 
 const ReviewTableBody: FC<ReviewTableBodyProps> = props => {
-   const ingredientInfo = getIngredientInfo(props.ingredientId);
-   const ingredient = {
+   const selector = useSelector(state => state);
+   const ingredientInfo = getIngredientInfo(selector, props.ingredientId);
+   const ingredient = ({
       ...ingredientInfo,
-      ...props
-   } as unknown as IngredientType
+      ...props,
+   } as unknown) as IngredientType;
    const open = props.index === props.openNum;
    const [value, setValue] = useState(1);
 
@@ -54,7 +56,9 @@ const ReviewTableBody: FC<ReviewTableBodyProps> = props => {
                   {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                </IconButton>
             </TableCell>
-            <TableCell onClick={handleClickOpenButton}>{ingredient.name}</TableCell>
+            <TableCell onClick={handleClickOpenButton}>
+               {ingredient.name}
+            </TableCell>
             {ingredient.right ? (
                <TableCell align="right">
                   <p>

@@ -15,12 +15,6 @@ const initialState: IngredientInfoType[] = [
       right: false,
    },
    {
-      id: '70d528c0-0f45-4af8-93a8-2c6a2bfb0ffa',
-      name: 'オリーブオイル',
-      unit: '大さじ',
-      right: false,
-   },
-   {
       id: '441f8116-4eee-49d2-9201-67b5ec81baed',
       name: 'みりん',
       unit: 'mg',
@@ -28,12 +22,6 @@ const initialState: IngredientInfoType[] = [
    },
    {
       id: 'f80f79ab-1911-49bc-bd46-8d0fde4e99f5',
-      name: '醤油',
-      unit: '大さじ',
-      right: false,
-   },
-   {
-      id: '9d2cf0d3-29f2-4c91-b87f-226b5c9fe582',
       name: '醤油',
       unit: '大さじ',
       right: false,
