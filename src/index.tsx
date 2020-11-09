@@ -2,18 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { recipesSlice, configSlice } from './reducers/';
-
-const rootReducer = combineReducers({
-   recipes: recipesSlice,
-   config: configSlice,
-});
-export type RootState = ReturnType<typeof rootReducer>;
-const store = configureStore({
-   reducer: rootReducer,
-});
+import store from './store'
 
 ReactDOM.render(
    <Provider store={store}>

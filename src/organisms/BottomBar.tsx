@@ -10,12 +10,11 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBottomNavNum } from '../selector';
-import { RootState } from '../index';
 import { transitPage } from '../reducers/config';
 
 const BottomBar: FC = () => {
    const dispatch = useDispatch();
-   const selector = useSelector<RootState, RootState>(state => state);
+   const selector = useSelector(state => state);
    const bottomNavNum = getBottomNavNum(selector);
    const navigate = useNavigate();
    return (

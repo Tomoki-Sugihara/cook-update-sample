@@ -12,17 +12,21 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 import Header from '../../organisms/Header';
-import { RootState } from '../../index';
+// import { RootState } from '../../index';
 import Ingredient from '../../organisms/Ingredient';
-import { Info } from '../list/RecipeItem';
 import { useNavigate } from 'react-router-dom';
+import { RecipeState } from '../../reducers/recipes';
 
 const Cook = () => {
    const { id } = useParams();
    const navigate = useNavigate();
-   const recipes = useSelector((state: RootState) => state.recipes);
-   const currentRecipe = recipes.find(recipe => recipe.id === id);
-   const latestInfo = currentRecipe && currentRecipe.dairyInformation[0];
+   const selector = useSelector(state => state);
+   const recipes: RecipeState[] = useSelector(state => state.recipes);
+   const currentRecipe = recipes.find(
+      recipe => recipe.id === id
+   ) as RecipeState;
+   const latestInfo = currentRecipe.recipeInfo[0];
+   // const latestInfo = getLatestRecipeInfo(selector);
 
    if (currentRecipe === undefined) {
       return <div>このレシピは存在しません</div>;
@@ -49,17 +53,17 @@ const Cook = () => {
                      </TableRow>
                   </TableHead>
                   <TableBody>
-                     {latestInfo.ingredients.map(ingredient => (
+                     {latestInfo.ingredientData.map((ingredient, index) => (
                         <Ingredient
                            {...ingredient}
-                           key={ingredient.id}
-                           status='cooking'
+                           key={index}
+                           status="cooking"
                         />
                      ))}
                   </TableBody>
                </Table>
             </TableContainer>
-            {currentRecipe.dairyInformation.map((info: Info, index) => {
+            {currentRecipe.recipeInfo.map((info, index) => {
                if (info.memo) {
                   const date = `${
                      info.created_at.getMonth() + 1

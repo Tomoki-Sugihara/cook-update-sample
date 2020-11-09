@@ -12,15 +12,19 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
 import Header from '../../organisms/Header';
-import { RootState } from '../../index';
 import Ingredient from '../../organisms/Ingredient';
 import ReviewTableBody from '../../components/ReviewTableBody';
+import { RecipeState } from '../../reducers/recipes';
+import { getLatestRecipeInfo } from '../../selector';
 
 const Review = () => {
    const { id } = useParams();
-   const recipes = useSelector((state: RootState) => state.recipes);
-   const currentRecipe = recipes.find(recipe => recipe.id === id);
-   const latestInfo = currentRecipe && currentRecipe.dairyInformation[0];
+   const recipes = useSelector(state => state.recipes);
+   const currentRecipe = recipes.find(
+      recipe => recipe.id === id
+   ) as RecipeState;
+   const selector = useSelector(state => state);
+   const latestInfo = getLatestRecipeInfo(selector);
 
    const [openNum, setOpenNum] = useState<number | null>(0);
    const inputOpenNum = useCallback(
@@ -52,10 +56,10 @@ const Review = () => {
                      </TableRow>
                   </TableHead>
                   <TableBody>
-                     {latestInfo.ingredients.map((ingredient, index) => (
+                     {latestInfo.ingredientData.map((ingredient, index) => (
                         <ReviewTableBody
                            {...ingredient}
-                           key={ingredient.id}
+                           key={index}
                            index={index}
                            openNum={openNum}
                            // setOpenNum={setOpenNum}
